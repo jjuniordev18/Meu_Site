@@ -178,6 +178,7 @@ strong { font-weight: 600; color: var(--color-ink); }
 }
 .btn:active { transform: translateY(0); }
 .btn__icon { margin-inline-start: var(--space-2xs); }
+.btn__icon--lead { margin-inline-start: 0; margin-inline-end: var(--space-2xs); }
 .btn__feedback { display: none; }
 .btn.is-copied .btn__label { display: none; }
 .btn.is-copied .btn__feedback { display: inline; }
@@ -1063,9 +1064,30 @@ html.has-cursor, html.has-cursor * { cursor: none !important; }
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-xl);
+  gap: var(--space-sm);
   margin-top: var(--space-xl);
 }
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  color: var(--color-muted);
+  transition: color var(--dur-short) var(--ease-out),
+              border-color var(--dur-short) var(--ease-out),
+              transform var(--dur-short) var(--ease-out),
+              background-color var(--dur-short) var(--ease-out);
+}
+.social-link:hover {
+  color: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  background: color-mix(in oklab, var(--color-accent-2) 8%, transparent);
+}
+.social-link:active { transform: translateY(1px); }
+.social-link svg { width: 1.2rem; height: 1.2rem; }
 
 /* ---------------------------------------------------------------- footer — Ft5 statement */
 
