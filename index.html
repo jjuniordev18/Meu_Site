@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Josué Mariano Gomes Junior — Telecom &amp; Engenharia de Software</title>
+  <meta name="description"
+    content="Líder Operacional com 20+ anos mantendo redes LTE privadas e automação em ambientes críticos de mineração. Bacharel em Engenharia de Software.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="author" content="Josué Mariano Gomes Junior">
+  <meta name="keywords"
+    content="telecomunicações, LTE privada, mineração, automação industrial, engenharia de software, rede 4G, RF, Zabbix, Grafana">
+  <meta name="theme-color" content="#1b1e29">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Josué Mariano Gomes Junior — Telecom &amp; Engenharia de Software">
+  <meta property="og:description"
+    content="Redes que não podem falhar. 20+ anos em telecomunicações e automação em ambientes críticos — e construindo software para os mesmos tipos de problema.">
+  <meta property="og:url" content="https://jjuniordev18.github.io/Meu_Site/">
+  <meta property="og:site_name" content="jjunior.dev">
+  <meta property="og:locale" content="pt_BR">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:image" content="og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Josué Mariano Gomes Junior — Telecom & Engenharia de Software">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Josué Mariano Gomes Junior — Telecom &amp; Engenharia de Software">
+  <meta name="twitter:description"
+    content="Redes que não podem falhar. 20+ anos em telecomunicações e automação em ambientes críticos — e construindo software para os mesmos tipos de problema.">
+  <meta name="twitter:image" content="og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap"
+    rel="stylesheet">
+  <link rel="preload" as="image" href="edenmoon-earth-8463724_1920.webp" fetchpriority="high">
+  <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Josué Mariano Gomes Junior",
+    "alternateName": "JOSUÉ M. GOMES JR",
+    "jobTitle": "Líder Operacional · Bacharel em Engenharia de Software",
+    "email": "mailto:juniorgm18@gmail.com",
+    "url": "https://jjuniordev18.github.io/Meu_Site/",
+    "sameAs": [
+      "https://www.linkedin.com/in/josu%C3%A9-gomes-junior-b7087329a/",
+      "https://github.com/jjuniordev18"
+    ],
+    "knowsAbout": ["Telecomunicações", "LTE privada", "Automação industrial", "Engenharia de Software", "Redes RF", "Zabbix", "Grafana"],
+    "address": { "@type": "PostalAddress", "addressCountry": "BR" }
+  }
+  </script>
+</head>
+
+<body>
+
+  <header class="nav" aria-label="Navegação principal">
+    <div class="nav__inner" id="nav">
+      <a class="nav__brand" href="#top">jjunior<span>.</span>dev</a>
+      <nav class="nav__links" id="nav-links" aria-label="Seções">
+        <a href="#sobre"><span data-text="Sobre">Sobre</span></a>
+        <a href="#competencias"><span data-text="Competências">Competências</span></a>
+        <a href="#trajetoria"><span data-text="Trajetória">Trajetória</span></a>
+        <a href="#projetos"><span data-text="Projetos">Projetos</span></a>
+        <a href="#contato"><span data-text="Contato">Contato</span></a>
+      </nav>
+      <button class="nav__theme" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro"
+        aria-pressed="false">
+        <svg class="nav__theme-icon nav__theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="12" y1="2" x2="12" y2="5"></line>
+          <line x1="12" y1="19" x2="12" y2="22"></line>
+          <line x1="4.9" y1="4.9" x2="7" y2="7"></line>
+          <line x1="17" y1="17" x2="19.1" y2="19.1"></line>
+          <line x1="2" y1="12" x2="5" y2="12"></line>
+          <line x1="19" y1="12" x2="22" y2="12"></line>
+          <line x1="4.9" y1="19.1" x2="7" y2="17"></line>
+          <line x1="17" y1="7" x2="19.1" y2="4.9"></line>
+        </svg>
+        <svg class="nav__theme-icon nav__theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+      </button>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" data-bg="edenmoon-earth-8463724_1920.webp">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <figure class="hero__portrait" style="--i:0">
+            <img class="hero__portrait-img" src="imagem.webp" alt="Retrato de Josué Mariano Gomes Junior" width="864"
+              height="1184" decoding="async" fetchpriority="high">
+          </figure>
+          <p class="hero__meta" style="--i:0">JOSUÉ M. GOMES JR</p>
+          <p class="hero__langs" style="--i:0" aria-label="Idiomas: português nativo, inglês básico, espanhol básico">
+            <span>PT · nativo</span><span>EN · básico</span><span>ES · básico</span>
+          </p>
+          <h1 class="hero__display" style="--i:1">Redes que não <span>podem falhar.</span></h1>
+          <p class="hero__lede" style="--i:2">Mais de 15 anos mantendo telecomunicações em ambientes críticos — da rede
+            das operadoras à LTE privada na mineração — e agora construindo software para os mesmos tipos de problema.
+          </p>
+          <div class="hero__cta" style="--i:3">
+            <a class="btn btn--primary" href="#contato">Entrar em contato</a>
+            <a class="link-arrow" href="#projetos">Ver projetos <span class="link-arrow__glyph"
+                aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <svg class="hero__network net" viewBox="0 0 420 360" role="presentation" style="--i:4">
+          <g>
+            <line x1="210" y1="180" x2="60" y2="70" />
+            <line x1="210" y1="180" x2="140" y2="40" />
+            <line x1="210" y1="180" x2="250" y2="50" />
+            <line x1="210" y1="180" x2="360" y2="80" />
+            <line x1="210" y1="180" x2="80" y2="150" />
+            <line x1="210" y1="180" x2="320" y2="150" />
+            <line x1="210" y1="180" x2="90" y2="260" />
+            <line x1="210" y1="180" x2="200" y2="300" />
+            <line x1="210" y1="180" x2="330" y2="280" />
+            <line x1="60" y1="70" x2="140" y2="40" />
+            <line x1="140" y1="40" x2="250" y2="50" />
+            <line x1="250" y1="50" x2="360" y2="80" />
+            <line x1="80" y1="150" x2="90" y2="260" />
+            <line x1="320" y1="150" x2="330" y2="280" />
+            <line x1="90" y1="260" x2="200" y2="300" />
+            <line x1="200" y1="300" x2="330" y2="280" />
+            <line x1="250" y1="50" x2="320" y2="150" />
+            <line x1="360" y1="80" x2="320" y2="150" />
+          </g>
+          <g>
+            <circle class="hub-ring" cx="210" cy="180" r="15" />
+            <circle class="hub" cx="210" cy="180" r="8" />
+            <circle class="node-accent" cx="250" cy="50" r="5" />
+            <circle class="node-accent" cx="90" cy="260" r="5" />
+            <circle class="node" cx="60" cy="70" r="5" />
+            <circle class="node" cx="140" cy="40" r="4" />
+            <circle class="node" cx="360" cy="80" r="4" />
+            <circle class="node" cx="80" cy="150" r="4" />
+            <circle class="node" cx="320" cy="150" r="5" />
+            <circle class="node" cx="200" cy="300" r="5" />
+            <circle class="node" cx="330" cy="280" r="4" />
+          </g>
+        </svg>
+      </div>
+      <p class="hero__scroll" aria-hidden="true">rolar</p>
+    </section>
+
+    <section class="section about section--bg section--img-code" id="sobre" data-bg="pexels-code-1839406_1920.webp">
+      <div class="container">
+        <div class="about__grid">
+          <header class="section__head" data-reveal>
+            <span class="section__mark" aria-hidden="true"></span>
+            <h2 class="section__title">Do campo de mineração ao código.</h2>
+            <p class="section__lede">Profissional multidisciplinar: manutenção técnica, automação industrial e
+              telecomunicações vivendo no mesmo lugar — infraestrutura que não pode parar.</p>
+          </header>
+          <div class="about__body" data-reveal="right">
+            <p>Configurei, mantive e fiz troubleshooting de redes LTE privadas em ambientes de mineração — monitorando
+              infraestrutura crítica com <strong>Spectrum, Zabbix e Grafana</strong> e respondendo a falhas em tempo
+              crítico.</p>
+            <p>Bacharel em <strong>Engenharia de Software</strong>, trago a disciplina de campo para o desenvolvimento
+              de sistemas: diagnóstica, sistemática e orientada a disponibilidade.</p>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat" data-reveal>
+            <dt class="stat__label">anos de campo</dt>
+            <dd class="stat__value"><span class="stat__num" data-count="20">0</span><span class="stat__suffix">+</span>
+            </dd>
+          </div>
+          <div class="stat" data-reveal>
+            <dt class="stat__label">empresas no setor</dt>
+            <dd class="stat__value"><span class="stat__num" data-count="12">0</span></dd>
+          </div>
+          <div class="stat" data-reveal>
+            <dt class="stat__label">gerações · 2G / 3G / 4G / 5G</dt>
+            <dd class="stat__value"><span class="stat__num" data-count="4">0</span></dd>
+          </div>
+          <div class="stat" data-reveal>
+            <dt class="stat__label">monitoramento contínuo</dt>
+            <dd class="stat__value"><span class="stat__num" data-count="24">0</span><span class="stat__suffix">/7</span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section skills section--bg section--img-ai" id="competencias" data-bg="geralt-artificial-intelligence-3382507_1920.webp">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="section__mark" aria-hidden="true"></span>
+          <h2 class="section__title">Competências</h2>
+        </header>
+        <div class="spec">
+          <div class="spec__row" data-reveal>
+            <h3 class="spec__cat">Técnicas</h3>
+            <ul class="spec__list">
+              <li>Manutenção preventiva, corretiva e preditiva</li>
+              <li>Troubleshooting e diagnóstico de falhas</li>
+              <li>Configuração de redes e automação</li>
+              <li>Sistemas de RF e transmissão — PDH, Flexy Packet, SRAL</li>
+              <li>Implantação e ativação de BTS e Node-B (Nokia)</li>
+              <li>Leitura de esquemas e documentação técnica</li>
+              <li>Equipamentos Nokia, Ericsson e Huawei</li>
+              <li>Instalações elétricas de alta e baixa tensão</li>
+            </ul>
+          </div>
+          <div class="spec__row" data-reveal>
+            <h3 class="spec__cat">Operacionais</h3>
+            <ul class="spec__list">
+              <li>Gestão de ordens de serviço</li>
+              <li>Inspeção e controle de qualidade</li>
+              <li>Supervisão de equipes de instalação</li>
+              <li>Planejamento de manutenção preventiva</li>
+              <li>Elaboração de relatórios técnicos</li>
+              <li>Orientação e treinamento de equipes de campo</li>
+            </ul>
+          </div>
+          <div class="spec__row" data-reveal>
+            <h3 class="spec__cat">Gerenciais</h3>
+            <ul class="spec__list">
+              <li>Acompanhamento de KPIs e MTBF</li>
+              <li>Participação em auditorias técnicas</li>
+              <li>Gestão de materiais e ferramentas</li>
+              <li>Procedimentos de segurança operacional</li>
+              <li>Análise de viabilidade técnica</li>
+            </ul>
+          </div>
+          <div class="spec__row" data-reveal>
+            <h3 class="spec__cat">Interpessoais</h3>
+            <ul class="spec__list">
+              <li>Comunicação técnica clara</li>
+              <li>Trabalho em equipe multidisciplinar</li>
+              <li>Orientação ao detalhe e a resultados</li>
+              <li>Adaptabilidade a ambientes dinâmicos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journey section--bg section--img-robotics" id="trajetoria" data-bg="satheeshsankaran-ai-generated-8659547_1920.webp">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="section__mark" aria-hidden="true"></span>
+          <h2 class="section__title">Trajetória</h2>
+          <p class="section__lede">Uma década mantendo redes que sustentam operações — da torre à rede privada, e agora
+            ao código.</p>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">Atual</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Líder Operacional</h3>
+              <p class="timeline__org">Sonda Procwork Informática</p>
+              <p class="timeline__desc">Manutenção preventiva, corretiva e emergencial da rede LTE privada Vale em
+                ambiente de mineração; monitoramento via Spectrum, Zabbix e Grafana; orientação técnica às equipes de
+                campo.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2024 – 2026</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Automação Industrial</h3>
+              <p class="timeline__org">Sonda Procwork Informática</p>
+              <p class="timeline__desc">Automação de sistemas industriais e manutenção de equipamentos em ambiente de
+                mineração.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2022 – 2024</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico em Telecomunicações</h3>
+              <p class="timeline__org">Trópico Sistemas e Telecom da Amazônia</p>
+              <p class="timeline__desc">Implantação e manutenção da rede LTE privada Vale em Parauapebas e Carajás;
+                acompanhamento de KPIs (disponibilidade e MTBF); inspeções em equipamentos de RF e MW.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2021 – 2022</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico em Telecomunicações</h3>
+              <p class="timeline__org">Eletrodata Engenharia</p>
+              <p class="timeline__desc">Operação assistida de equipamentos Nokia/Vivo; manutenção e implantação da rede
+                LTE privada Vale; monitoramento contínuo e análise de anomalias.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2020 – 2021</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Campo</h3>
+              <p class="timeline__org">Radiocell Engenharia</p>
+              <p class="timeline__desc">Implantação, otimização e ativação de redes 2G, 3G e 4G; configuração de
+                equipamentos Nokia, Ericsson e Huawei; testes e validação de sistemas de comunicação.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2018 – 2019</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico em Telecomunicações · PQE OJT</h3>
+              <p class="timeline__org">Telsign Consultoria</p>
+              <p class="timeline__desc">Manutenção preventiva e corretiva de equipamentos Nokia, Ericsson e Huawei;
+                configuração de sistemas SRAN, AIR SCALE, rádios e enlace Ceragon.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2017 – 2018</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Manutenção Nível II</h3>
+              <p class="timeline__org">TEL Telecomunicações</p>
+              <p class="timeline__desc">Manutenção preventiva e corretiva de equipamentos de telecomunicações;
+                atendimento a demandas críticas e emergenciais.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2016 – 2017</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Manutenção</h3>
+              <p class="timeline__org">Ericsson Gestão e Serviços de Telecom</p>
+              <p class="timeline__desc">Manutenção preventiva e corretiva de redes 2G, 3G e 4G; suporte técnico
+                especializado a equipamentos Nokia, Ericsson e Huawei.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2016</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Campo</h3>
+              <p class="timeline__org">Intaltec Engenharia</p>
+              <p class="timeline__desc">Implantação e manutenção de sistemas de RF; implantação, ativação e manutenção
+                de BTS e Node-B (Nokia) em regime PJ.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2015 – 2016</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Supervisor de Instalação</h3>
+              <p class="timeline__org">Stalker Engenharia</p>
+              <p class="timeline__desc">Supervisão de implantação e manutenção de sistemas de RF e de BTS e Node-B
+                (Nokia) em regime PJ.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2014 – 2015</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Supervisor de Instalação</h3>
+              <p class="timeline__org">Lemcon do Brasil</p>
+              <p class="timeline__desc">Supervisão de implantação e manutenção de sistemas de RF; ativação e manutenção
+                de BTS e Node-B (Nokia); instalação de rádios de enlace (PDH).</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2012 – 2014</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico de Campo</h3>
+              <p class="timeline__org">WCA.com</p>
+              <p class="timeline__desc">Implantação e manutenção de sistemas de RF e transmissão — rádios Flexy Packet,
+                Flexy Hybrid e SRAL; instalação de fontes Omibra e Eltek.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2009 – 2011</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Técnico em Telecomunicações</h3>
+              <p class="timeline__org">Fatto Engenharia</p>
+              <p class="timeline__desc">Implantação e manutenção de sistemas de RF; ativação e manutenção de BTS e
+                Node-B (Nokia); instalação de fontes Omibra e Eltek.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2006 – 2007</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Eletricista</h3>
+              <p class="timeline__org">Endicon Engenharia</p>
+              <p class="timeline__desc">Eletricista de alta e baixa tensão.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2004 – 2006</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Eletricista</h3>
+              <p class="timeline__org">Vitória Consultoria e Serviços</p>
+              <p class="timeline__desc">Eletricista de alta e baixa tensão.</p>
+            </div>
+          </li>
+          <li class="timeline__step" data-reveal="fade">
+            <div class="timeline__meta"><span class="timeline__period">2002 – 2004</span></div>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Eletricista</h3>
+              <p class="timeline__org">Sondotec Geologia e Construção</p>
+              <p class="timeline__desc">Início de carreira como eletricista de alta e baixa tensão.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="journey__aside" data-reveal>
+          <div class="journey__col">
+            <h3 class="journey__head">Formação</h3>
+            <ul class="journey__list">
+              <li><strong>Bacharel em Engenharia de Software</strong><br>Unopar / Anhanguera</li>
+              <li><strong>Técnico em Eletrotécnica</strong><br>Colégio Integrado Polivalente</li>
+              <li><strong>Alta e Baixa Tensão</strong><br>CEFET</li>
+              <li><strong>Extensão — Acelere Sua Carreira</strong><br>Unopar · 2025.2 e 2026.1</li>
+              <li><strong>CNH</strong> · categoria B</li>
+            </ul>
+          </div>
+          <div class="journey__col">
+            <h3 class="journey__head">Certificações — Telecom</h3>
+            <ul class="journey__list">
+              <li>Instalação e comissionamento NSN — WCDMA, GSM Flexi Edge, Flexi Packet</li>
+              <li>Rádio enlace PDH e LTW Nokia</li>
+              <li>Multirádio e sistema irradiante — NSN</li>
+              <li>Eltek instalação e comissionamento — NSN</li>
+              <li>Calibração e testes com Site Master</li>
+              <li>Redes básico — Cisco</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="journey__aside journey__aside--certs" data-reveal>
+          <div class="journey__col">
+            <h3 class="journey__head">Programação &amp; Dados</h3>
+            <ul class="journey__list">
+              <li><strong>Python básico</strong> · Fundação Bradesco</li>
+              <li><strong>Java básico</strong> · Fundação Bradesco</li>
+              <li><strong>Lógica de programação</strong> · Fundação Bradesco</li>
+              <li><strong>POO</strong> · Fundação Bradesco</li>
+              <li><strong>Projetos de sistemas de TI</strong> · Fundação Bradesco</li>
+              <li><strong>Introdução à Ciência de Dados</strong> · Google</li>
+              <li><strong>Excel básico</strong> · Fundação Bradesco</li>
+            </ul>
+          </div>
+          <div class="journey__col">
+            <h3 class="journey__head">Segurança &amp; IA</h3>
+            <ul class="journey__list">
+              <li><strong>Introduction to Cybersecurity</strong> · Cisco</li>
+              <li><strong>Segurança em TI</strong> · Fundação Bradesco</li>
+              <li><strong>Direito autoral e crimes cibernéticos</strong> · IFRS</li>
+              <li><strong>Inteligência Artificial e Produtividade</strong> · Google</li>
+              <li><strong>Prompting responsável</strong> · Google</li>
+              <li><strong>Internet das Coisas</strong> · Google / MIT</li>
+              <li><strong>Automação de Sistemas</strong> · IFRS</li>
+            </ul>
+          </div>
+          <div class="journey__col">
+            <h3 class="journey__head">Soft Skills</h3>
+            <ul class="journey__list">
+              <li><strong>Controle de impulso e manejo de raiva, vergonha e inveja</strong> · Fundação Bradesco</li>
+              <li><strong>Segurança em Tecnologia da Informação</strong> · Fundação Bradesco</li>
+              <li><strong>Fundamentos de T.I</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects section--bg section--img-gen2" id="projetos" data-bg="placidplace-ai-7265839_1920.webp">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <span class="section__mark" aria-hidden="true"></span>
+          <h2 class="section__title">Projetos</h2>
+          <p class="section__lede">Ferramentas que eu mesmo uso no campo e aplicações que desenvolvo com a base de
+            Engenharia de Software — tudo público no GitHub.</p>
+        </header>
+        <ul class="projects__grid">
+          <li class="projects__card projects__card--wide" data-reveal="fade">
+            <span class="projects__badge">Em destaque</span>
+            <p class="projects__lang">HTML</p>
+            <h3 class="projects__name">app-relatorio-fotografico</h3>
+            <p class="projects__desc">Relatório fotográfico para inspeções e manutenção preventiva — o mesmo tipo de
+              documentação que exigem as ordens de serviço em campo. Demo ao vivo disponível.</p>
+            <div class="projects__links">
+              <a class="link-arrow" href="https://jjuniordev18.github.io/app-relatorio-fotografico/" target="_blank"
+                rel="noopener">Ver demo <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+              <a class="link-arrow" href="https://github.com/jjuniordev18/app-relatorio-fotografico" target="_blank"
+                rel="noopener">GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+            </div>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">JavaScript</p>
+            <h3 class="projects__name">telecom-impact</h3>
+            <p class="projects__desc">Calculadora de impacto na área de telecomunicações — análise de alcance e
+              cobertura no planejamento de redes.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/telecom-impact" target="_blank"
+              rel="noopener">Ver no GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">TypeScript</p>
+            <h3 class="projects__name">omni-map</h3>
+            <p class="projects__desc">Visualização de dados geoespaciais em TypeScript — mapas aplicados a
+              infraestrutura e cobertura.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/omni-map" target="_blank" rel="noopener">Ver no
+              GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">JavaScript</p>
+            <h3 class="projects__name">KeyControl</h3>
+            <p class="projects__desc">Controle de retirada e devolução de chaves — rastreabilidade de acesso em
+              operações e plantas.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/KeyControl" target="_blank" rel="noopener">Ver
+              no GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">JavaScript</p>
+            <h3 class="projects__name">gestao_geradores</h3>
+            <p class="projects__desc">Sistema web de gestão de geradores — manutenção preventiva e controle de
+              equipamentos críticos.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/gestao_geradores" target="_blank"
+              rel="noopener">Ver no GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">TypeScript</p>
+            <h3 class="projects__name">reportcam</h3>
+            <p class="projects__desc">Criação de relatórios fotográficos diversos — evidência técnica padronizada para
+              inspeções.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/reportcam" target="_blank" rel="noopener">Ver no
+              GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">TypeScript</p>
+            <h3 class="projects__name">photographic-report</h3>
+            <p class="projects__desc">Relatórios fotográficos de vários modelos para diferentes funcionalidades de
+              campo.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/photographic-report" target="_blank"
+              rel="noopener">Ver no GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+          <li class="projects__card" data-reveal="fade">
+            <p class="projects__lang">Move</p>
+            <h3 class="projects__name">sui-ask</h3>
+            <p class="projects__desc">Aplicação no ecossistema Sui — explorando contratos inteligentes em Move.</p>
+            <a class="link-arrow" href="https://github.com/jjuniordev18/sui-ask" target="_blank" rel="noopener">Ver no
+              GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          </li>
+        </ul>
+
+        <div class="projects__more" data-reveal>
+          <h3 class="journey__head">Mais explorações no GitHub</h3>
+          <ul class="projects__more-list">
+            <li><strong>nexusagenda</strong> · TypeScript — agenda pessoal</li>
+            <li><strong>voycread</strong> · TypeScript — leitura de PDF e livros por voz</li>
+            <li><strong>videosnap-editor</strong> · TypeScript — editor de vídeos</li>
+            <li><strong>signos-do-zodiaco</strong> · JavaScript — signos, fases da lua e previsões</li>
+            <li><strong>videograb</strong> — download de vídeos de YouTube, TikTok e Instagram</li>
+            <li><strong>Telecom_Impact</strong> · JavaScript — cálculo de impacto em telecom</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact section--bg section--img-ai2" id="contato" data-bg="sinousxl-ai-generated-8615202_1920.webp">
+      <div class="container">
+        <h2 class="contact__title" data-reveal>Vamos conversar?</h2>
+        <p class="contact__lede" data-reveal>Se o problema é crítico, eu já resolvi parecido antes.</p>
+        <div class="contact__actions" data-reveal>
+          <a class="btn btn--primary" href="mailto:juniorgm18@gmail.com">juniorgm18@gmail.com</a>
+          <button class="btn" id="copy-email" type="button" aria-label="Copiar e-mail">
+            <span class="btn__label">Copiar e-mail</span>
+            <span class="btn__feedback" aria-hidden="true">E-mail copiado!</span>
+          </button>
+          <a class="btn" href="https://wa.me/5591981908702" target="_blank" rel="noopener">WhatsApp · (91)
+            98190-8702</a>
+          <a class="btn" href="curriculo.pdf" download>Baixar currículo <span class="btn__icon"
+              aria-hidden="true">↓</span></a>
+        </div>
+        <div class="contact__social" data-reveal>
+          <a class="link-arrow" href="https://www.linkedin.com/in/josu%C3%A9-gomes-junior-b7087329a/" target="_blank"
+            rel="noopener">LinkedIn <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+          <a class="link-arrow" href="https://github.com/jjuniordev18" target="_blank" rel="noopener">GitHub <span
+              class="link-arrow__glyph" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-bg="iffany-ai-generated-8911311_1920.webp">
+    <div class="container">
+      <p class="footer__statement">O campo me ensinou a resolver problemas.<br><span>A engenharia me ensinou a construir
+          soluções.</span></p>
+      <div class="footer__meta">
+        <a class="footer__brand" href="#top">jjunior<span>.</span>dev</a>
+        <nav class="footer__links" aria-label="Mapa do site">
+          <a href="#sobre"><span data-text="Sobre">Sobre</span></a>
+          <a href="#competencias"><span data-text="Competências">Competências</span></a>
+          <a href="#trajetoria"><span data-text="Trajetória">Trajetória</span></a>
+          <a href="#projetos"><span data-text="Projetos">Projetos</span></a>
+        </nav>
+        <p class="footer__copy">© 2026 Josué M. Gomes Jr</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 19V5M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script src="script.js?v=5"></script>
+
+  <!-- Firebase / Google Analytics -->
+  <script defer src="https://www.gstatic.com/firebasejs/12.17.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics-compat.js"></script>
+  <script defer>
+    if (window.firebase) {
+      var firebaseConfig = {
+        apiKey: "AIzaSyBD7mR8nWxNcRor2pcOEWJ0SYV4aFhkCSQ",
+        authDomain: "meusite-caf62.firebaseapp.com",
+        projectId: "meusite-caf62",
+        storageBucket: "meusite-caf62.firebasestorage.app",
+        messagingSenderId: "413097572031",
+        appId: "1:413097572031:web:477c1891eeb1d92a69380a",
+        measurementId: "G-734QXWFPF3"
+      };
+      try {
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      } catch (e) {
+        console.warn("Firebase Analytics indisponível:", e);
+      }
+    }
+  </script>
+</body>
+
+</html>

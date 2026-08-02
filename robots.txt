@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jjuniordev18.github.io/Meu_Site/sitemap.xml
