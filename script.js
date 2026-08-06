@@ -15,6 +15,8 @@
     if (theme === "light") root.setAttribute("data-theme", "light");
     else root.removeAttribute("data-theme");
     if (themeBtn) themeBtn.setAttribute("aria-pressed", theme === "light");
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute("content", theme === "light" ? "#f5f5f0" : "#1b1e29");
     if (animate && !reduceMotion) {
       setTimeout(function () { root.classList.remove("theme-switching"); }, 500);
     }
@@ -107,6 +109,28 @@
       var sec = document.getElementById(id);
       if (sec) spyObserver.observe(sec);
     });
+  }
+
+  /* ---------------- timeline collapse/expand */
+  var timelineToggle = document.getElementById("timeline-toggle");
+  var timelineSteps = Array.prototype.slice.call(document.querySelectorAll(".timeline__step"));
+  var VISIBLE_STEPS = 6;
+
+  if (timelineToggle && timelineSteps.length > VISIBLE_STEPS) {
+    timelineSteps.forEach(function (step, i) {
+      if (i >= VISIBLE_STEPS) step.classList.add("is-collapsed");
+    });
+    timelineToggle.addEventListener("click", function () {
+      var expanded = timelineToggle.getAttribute("aria-expanded") === "true";
+      timelineToggle.setAttribute("aria-expanded", expanded ? "false" : "true");
+      timelineToggle.classList.toggle("is-open", !expanded);
+      timelineToggle.querySelector("span").textContent = expanded ? "Mostrar trajetória completa" : "Mostrar menos";
+      timelineSteps.forEach(function (step, i) {
+        if (i >= VISIBLE_STEPS) step.classList.toggle("is-collapsed", expanded);
+      });
+    });
+  } else if (timelineToggle) {
+    timelineToggle.style.display = "none";
   }
 
   /* ---------------- number reveal (stats) */

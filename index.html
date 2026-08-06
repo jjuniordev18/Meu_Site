@@ -39,8 +39,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap"
     rel="stylesheet">
-  <link rel="preload" as="image" href="edenmoon-earth-8463724_1920.webp" fetchpriority="high">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -109,7 +108,7 @@
             <span>PT · nativo</span><span>EN · básico</span><span>ES · básico</span>
           </p>
           <h1 class="hero__display" style="--i:1">Redes que não <span>podem falhar.</span></h1>
-          <p class="hero__lede" style="--i:2">Mais de 15 anos mantendo telecomunicações em ambientes críticos — da rede
+          <p class="hero__lede" style="--i:2">Mais de 20 anos mantendo telecomunicações em ambientes críticos — da rede
             das operadoras à LTE privada na mineração — e agora construindo software para os mesmos tipos de problema.
           </p>
           <div class="hero__cta" style="--i:3">
@@ -406,6 +405,10 @@
             </div>
           </li>
         </ol>
+        <button class="timeline-toggle" id="timeline-toggle" type="button" aria-expanded="false" aria-controls="timeline">
+          <span>Mostrar trajetória completa</span>
+          <span class="timeline-toggle__glyph" aria-hidden="true">↓</span>
+        </button>
 
         <div class="journey__aside" data-reveal>
           <div class="journey__col">
@@ -460,8 +463,7 @@
             <h3 class="journey__head">Soft Skills</h3>
             <ul class="journey__list">
               <li><strong>Controle de impulso e manejo de raiva, vergonha e inveja</strong> · Fundação Bradesco</li>
-              <li><strong>Segurança em Tecnologia da Informação</strong> · Fundação Bradesco</li>
-              <li><strong>Fundamentos de T.I</strong></li>
+              <li><strong>Fundamentos de T.I</strong> · Fundação Bradesco</li>
             </ul>
           </div>
         </div>
@@ -578,7 +580,7 @@
     <section class="section contact section--bg section--img-ai2" id="contato"
       data-bg="sinousxl-ai-generated-8615202_1920.webp">
       <div class="container">
-        <h2 class="contact__title is-revealed">Vamos conversar?</h2>
+        <h2 class="contact__title" data-reveal>Vamos conversar?</h2>
         <p class="contact__lede" data-reveal>Se o problema é crítico, eu já resolvi parecido antes.</p>
         <div class="contact__actions" data-reveal>
           <a class="btn btn--primary" href="mailto:juniorgm18@gmail.com">juniorgm18@gmail.com</a>
@@ -641,29 +643,15 @@
     </svg>
   </button>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 
-  <!-- Firebase / Google Analytics -->
-  <script defer src="https://www.gstatic.com/firebasejs/12.17.0/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/12.17.0/firebase-analytics-compat.js"></script>
-  <script defer>
-    if (window.firebase) {
-      var firebaseConfig = {
-        apiKey: "AIzaSyBD7mR8nWxNcRor2pcOEWJ0SYV4aFhkCSQ",
-        authDomain: "meusite-caf62.firebaseapp.com",
-        projectId: "meusite-caf62",
-        storageBucket: "meusite-caf62.firebasestorage.app",
-        messagingSenderId: "413097572031",
-        appId: "1:413097572031:web:477c1891eeb1d92a69380a",
-        measurementId: "G-734QXWFPF3"
-      };
-      try {
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-      } catch (e) {
-        console.warn("Firebase Analytics indisponível:", e);
-      }
-    }
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-734QXWFPF3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-734QXWFPF3');
   </script>
 </body>
 
