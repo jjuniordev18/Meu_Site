@@ -49,18 +49,20 @@
 
   function closeMenu(returnFocus) {
     nav.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
-    if (returnFocus) toggle.focus();
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+    if (returnFocus && toggle) toggle.focus();
   }
 
-  toggle.addEventListener("click", function () {
-    var open = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open) {
-      var first = nav.querySelector(".nav__links a");
-      if (first) first.focus({ preventScroll: true });
-    }
-  });
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) {
+        var first = nav.querySelector(".nav__links a");
+        if (first) first.focus({ preventScroll: true });
+      }
+    });
+  }
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && nav.classList.contains("is-open")) closeMenu(true);
@@ -197,38 +199,23 @@
 
   /* ---------------- lazy background images (from data-bg) */
   var lazyBgs = Array.prototype.slice.call(document.querySelectorAll("[data-bg]"));
+  function applyBg(el) {
+    var url = el.getAttribute("data-bg");
+    if (!url) return;
+    el.style.setProperty("--section-img", "url(\"" + url + "\")");
+  }
   if (lazyBgs.length && "IntersectionObserver" in window) {
     var bgObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.style.setProperty("--section-img", "url(\"" + entry.target.getAttribute("data-bg") + "\")");
+          applyBg(entry.target);
           bgObserver.unobserve(entry.target);
         }
       });
     }, { rootMargin: "500px 0px" });
     lazyBgs.forEach(function (el) { bgObserver.observe(el); });
   } else {
-    lazyBgs.forEach(function (el) {
-      el.style.setProperty("--section-img", "url(\"" + el.getAttribute("data-bg") + "\")");
-    });
-  }
-
-  /* ---------------- hero network cursor drift */
-
-  var netG = document.querySelector(".hero__network g");
-  var hero = document.querySelector(".hero");
-  if (netG && hero && finePointer) {
-    hero.addEventListener("pointermove", function (e) {
-      var r = hero.getBoundingClientRect();
-      var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      netG.style.setProperty("--drift-x", (nx * 10).toFixed(1) + "px");
-      netG.style.setProperty("--drift-y", (ny * 8).toFixed(1) + "px");
-    });
-    hero.addEventListener("pointerleave", function () {
-      netG.style.setProperty("--drift-x", "0px");
-      netG.style.setProperty("--drift-y", "0px");
-    });
+    lazyBgs.forEach(applyBg);
   }
 
   /* ---------------- Lusion-style effects */
@@ -324,14 +311,14 @@
   /* ---------------- copy email */
   var copyBtn = document.getElementById("copy-email");
   if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
+    copyBtn.addEventListener("click", function (e) {
+      e.preventDefault();
       var text = "juniorgm18@gmail.com";
+      var originalText = copyBtn.textContent;
       var done = function () {
-        copyBtn.classList.add("is-copied");
-        copyBtn.setAttribute("aria-label", "E-mail copiado");
+        copyBtn.textContent = "E-mail copiado!";
         setTimeout(function () {
-          copyBtn.classList.remove("is-copied");
-          copyBtn.setAttribute("aria-label", "Copiar e-mail");
+          copyBtn.textContent = originalText;
         }, 2000);
       };
       if (navigator.clipboard && window.isSecureContext) {
