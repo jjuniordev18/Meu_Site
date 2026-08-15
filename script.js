@@ -448,8 +448,27 @@
     }, { passive: true });
   }
 
-  /* ---------------- GSAP animations */
+/* ---------------- GSAP animations (lazy-loaded for hover-capable devices) */
+
+function loadGsap() {
   if (typeof gsap !== "undefined" && !reduceMotion) {
+    initGsapAnimations();
+    return;
+  }
+  if (typeof gsap === "undefined" && !reduceMotion && finePointer) {
+    var gsapScript = document.createElement("script");
+    var scrollTriggerScript = document.createElement("script");
+    gsapScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js";
+    scrollTriggerScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js";
+    gsapScript.onload = function () {
+      scrollTriggerScript.onload = initGsapAnimations;
+      document.head.appendChild(scrollTriggerScript);
+    };
+    document.head.appendChild(gsapScript);
+  }
+}
+
+function initGsapAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
     /* hero entrance — staggered fade + rise (autoAlpha = opacity + visibility) */
@@ -507,5 +526,7 @@
         setTimeout(function () { ScrollTrigger.refresh(); }, 100);
       });
     }
-  }
+}
+
+loadGsap();
 })();
