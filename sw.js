@@ -1,9 +1,10 @@
-const CACHE_NAME = 'jjunior-dev-v1';
+const CACHE_NAME = 'jjunior-dev-v5';
 const ASSETS = [
   '/',
   '/index.html',
   '/style.css',
   '/script.js',
+  '/manifest.json',
   '/img/favicon.svg',
   '/img/favicon-32x32.png',
   '/img/favicon-192x192.png',
@@ -30,19 +31,42 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) return response;
-        return fetch(event.request).then(fetchResponse => {
-          if (fetchResponse.status === 200) {
-            const responseClone = fetchResponse.clone();
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, responseClone));
+  const request = event.request;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  const sameOrigin = url.origin === self.location.origin;
+
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
           }
-          return fetchResponse;
+          return response;
+        })
+        .catch(() =>
+          caches.match(request)
+            .then(cached => cached || caches.match('/index.html'))
+        )
+    );
+    return;
+  }
+
+  if (sameOrigin) {
+    event.respondWith(
+      caches.match(request).then(cached => {
+        if (cached) return cached;
+        return fetch(request).then(response => {
+          if (response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+          }
+          return response;
         });
       })
-      .catch(() => caches.match('/index.html'))
-  );
+    );
+  }
 });

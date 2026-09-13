@@ -96,10 +96,11 @@
   /* ---------------- scroll reveal */
 
   var revealEls = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+  var revealObserver = null;
 
   /* the reveal replays every time a section scrolls back into view */
   if ("IntersectionObserver" in window) {
-    var revealObserver = new IntersectionObserver(function (entries) {
+    revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         entry.target.classList.toggle("is-revealed", entry.isIntersecting);
       });
@@ -107,6 +108,11 @@
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-revealed"); });
+  }
+
+  function observeReveal(el) {
+    if (revealObserver) revealObserver.observe(el);
+    else el.classList.add("is-revealed");
   }
 
   /* ---------------- scrollspy (active section in nav) */
@@ -152,6 +158,121 @@
     });
   } else if (timelineToggle) {
     timelineToggle.style.display = "none";
+  }
+
+  /* ---------------- projects collapse/expand */
+  var projectsToggle = document.getElementById("projects-toggle");
+  var VISIBLE_PROJECTS = 6;
+  var projectsExpanded = false;
+
+  function getProjCards() {
+    return Array.prototype.slice.call(document.querySelectorAll("#projects-grid .projects__card"));
+  }
+
+  function syncProjectsCollapse() {
+    if (!projectsToggle) return;
+    var cards = getProjCards();
+    projectsToggle.setAttribute("aria-expanded", projectsExpanded ? "true" : "false");
+    projectsToggle.classList.toggle("is-open", projectsExpanded);
+    var label = projectsToggle.querySelector("span");
+    if (label) label.textContent = projectsExpanded ? "Mostrar menos" : "Mostrar mais projetos";
+    if (cards.length <= VISIBLE_PROJECTS) {
+      projectsToggle.style.display = "none";
+      return;
+    }
+    projectsToggle.style.display = "";
+    cards.forEach(function (card, i) {
+      card.classList.toggle("is-collapsed", !projectsExpanded && i >= VISIBLE_PROJECTS);
+    });
+  }
+
+  syncProjectsCollapse();
+
+  if (projectsToggle) {
+    projectsToggle.addEventListener("click", function () {
+      projectsExpanded = !projectsExpanded;
+      syncProjectsCollapse();
+      setTimeout(function () {
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+      }, 120);
+    });
+  }
+
+  /* ---------------- dynamic GitHub projects (progressive enhancement) */
+  var GH_USER = "jjuniordev18";
+  var MAX_DYNAMIC_PROJECTS = 6;
+
+  function escHtml(str) {
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function wireDynamicCard(card) {
+    observeReveal(card);
+    if (finePointer) {
+      var inner = card.querySelector(".projects__card__inner");
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        if (inner) {
+          inner.style.setProperty("--spot-x", (e.clientX - r.left) + "px");
+          inner.style.setProperty("--spot-y", (e.clientY - r.top) + "px");
+        }
+      });
+    }
+    if (isTouchDevice) {
+      card.addEventListener("touchstart", function (e) {
+        if (e.target.closest(".link-arrow")) return;
+        getProjCards().forEach(function (c) { if (c !== card) c.classList.remove("is-touched"); });
+        card.classList.toggle("is-touched");
+      }, { passive: true });
+    }
+  }
+
+  function loadExtraProjects() {
+    var grid = document.getElementById("projects-grid");
+    if (!grid || !window.fetch) return;
+    var known = {};
+    grid.querySelectorAll(".projects__name").forEach(function (n) {
+      known[n.textContent.trim().toLowerCase()] = true;
+    });
+    var url = "https://api.github.com/users/" + GH_USER + "/repos?sort=updated&per_page=60&type=all";
+    fetch(url)
+      .then(function (res) { if (!res.ok) throw new Error("github " + res.status); return res.json(); })
+      .then(function (repos) {
+        var added = 0;
+        repos.forEach(function (repo) {
+          if (added >= MAX_DYNAMIC_PROJECTS) return;
+          if (!repo || repo.fork || !repo.description) return;
+          var name = repo.name || "";
+          if (name === "Meu_Site" || known[name.toLowerCase()]) return;
+          known[name.toLowerCase()] = true;
+          var li = document.createElement("li");
+          li.className = "projects__card";
+          li.setAttribute("data-reveal", "fade");
+          var lang = repo.language ? escHtml(repo.language) : "GitHub";
+          li.innerHTML =
+            '<span class="projects__card__bg"></span>' +
+            '<span class="projects__card__inner">' +
+            '<p class="projects__lang">' + lang + '</p>' +
+            '<h3 class="projects__name">' + escHtml(name) + '</h3>' +
+            '<p class="projects__desc">' + escHtml(repo.description) + '</p>' +
+            '<a class="link-arrow" href="' + escHtml(repo.html_url) + '" target="_blank" rel="noopener noreferrer">GitHub <span class="link-arrow__glyph" aria-hidden="true">↗</span></a>' +
+            '</span>';
+          grid.appendChild(li);
+          wireDynamicCard(li);
+          added++;
+        });
+        if (added > 0) syncProjectsCollapse();
+      })
+      .catch(function () { /* static fallback: curated cards stay as-is */ });
+  }
+
+  var scheduleIdle = window.requestIdleCallback || function (fn) { setTimeout(fn, 1500); };
+  if (document.readyState === "complete") {
+    scheduleIdle(loadExtraProjects, { timeout: 4000 });
+  } else {
+    window.addEventListener("load", function () {
+      scheduleIdle(loadExtraProjects, { timeout: 4000 });
+    });
   }
 
   /* ---------------- number reveal (stats) */
@@ -229,9 +350,30 @@
 
   /* ---------------- lazy background images (from data-bg) */
   var lazyBgs = Array.prototype.slice.call(document.querySelectorAll("[data-bg]"));
+  var avifSupport = false;
+  var AVIF_PROBE = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD5bWV0YQAAAAAAAAAvaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAFBpY3R1cmVIYW5kbGVyAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAASEAAAATAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGppcHJwAAAAS2lwY28AAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAAAMYXYxQ4EADAAAAAATY29scm5jbHgAAgACAAIAAAAAF2lwbWEAAAAAAAAAAQABBAECgwQAAAAbbWRhdAoFGAAGwCAyChyAAABYAABABMA=";
+
+  function detectAvif(cb) {
+    var img = new Image();
+    var settled = false;
+    var timer = setTimeout(function () { finish(false); }, 2000);
+    function finish(ok) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      avifSupport = ok;
+      cb(ok);
+    }
+    img.onload = function () { finish(true); };
+    img.onerror = function () { finish(false); };
+    img.src = AVIF_PROBE;
+  }
+
   function applyBg(el) {
-    var url = el.getAttribute("data-bg");
-    if (!url) return;
+    var avif = el.getAttribute("data-bg");
+    var webp = el.getAttribute("data-bg-webp");
+    if (!avif) return;
+    var url = avifSupport ? avif : (webp || avif);
     el.classList.add("bg-loading");
     var img = new Image();
     img.onload = function () {
@@ -241,21 +383,33 @@
         el.classList.add("bg-loaded");
       });
     };
+    img.onerror = function () {
+      if (webp && url !== webp) {
+        el.style.setProperty("--section-img", "url(\"" + webp + "\")");
+        requestAnimationFrame(function () {
+          el.classList.remove("bg-loading");
+          el.classList.add("bg-loaded");
+        });
+      }
+    };
     img.src = url;
   }
-  if (lazyBgs.length && "IntersectionObserver" in window) {
-    var bgObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          applyBg(entry.target);
-          bgObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: "500px 0px" });
-    lazyBgs.forEach(function (el) { bgObserver.observe(el); });
-  } else {
-    lazyBgs.forEach(applyBg);
-  }
+
+  detectAvif(function () {
+    if (lazyBgs.length && "IntersectionObserver" in window) {
+      var bgObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            applyBg(entry.target);
+            bgObserver.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "500px 0px" });
+      lazyBgs.forEach(function (el) { bgObserver.observe(el); });
+    } else {
+      lazyBgs.forEach(applyBg);
+    }
+  });
 
   /* ---------------- Lusion-style effects */
   /* site owner's choice: this is an animated showcase, so the cursor,
@@ -354,7 +508,7 @@
     /* close project cards when tapping outside */
     document.addEventListener("touchstart", function (e) {
       if (!e.target.closest(".projects__card")) {
-        projectCards.forEach(function (c) { c.classList.remove("is-touched"); });
+        getProjCards().forEach(function (c) { c.classList.remove("is-touched"); });
       }
     }, { passive: true });
   }
@@ -475,40 +629,55 @@ function initGsapAnimations() {
     var heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
     heroTl
       .from(".profile-card", { autoAlpha: 0, y: 30, scale: 0.95 }, 0.1)
-      .from(".hero__meta", { autoAlpha: 0, y: 20 }, 0.25)
       .from(".hero__display", { autoAlpha: 0, y: 30 }, 0.35)
       .from(".hero__lede", { autoAlpha: 0, y: 20 }, 0.5);
 
-    /* section heads — slide + fade on scroll (use opacity to avoid conflict with data-reveal) */
+    /* section heads — slide + fade on scroll.
+       The CSS [data-reveal] rule hides these elements until they enter the
+       viewport, so gsap.from() would capture opacity:0 as its end value and the
+       element would stay invisible forever. fromTo + clearProps guarantee an
+       explicit end state and release inline styles when done, so the CSS reveal
+       and :hover states take over again. */
     gsap.utils.toArray(".section__head").forEach(function (head) {
-      gsap.from(head, {
-        scrollTrigger: { trigger: head, start: "top 85%", toggleActions: "play none none none" },
-        opacity: 0, y: 40, duration: 0.7, ease: "power2.out"
-      });
+      gsap.fromTo(head,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.7, ease: "power2.out", clearProps: "opacity,transform",
+          scrollTrigger: { trigger: head, start: "top 85%", toggleActions: "play none none none" }
+        });
     });
 
     /* stats — scale up from center */
     gsap.utils.toArray(".stat").forEach(function (stat, i) {
-      gsap.from(stat, {
-        scrollTrigger: { trigger: stat, start: "top 88%" },
-        opacity: 0, y: 30, scale: 0.96, duration: 0.5, delay: i * 0.08, ease: "back.out(1.4)"
-      });
+      gsap.fromTo(stat,
+        { opacity: 0, y: 30, scale: 0.96 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.5, delay: i * 0.08, ease: "back.out(1.4)",
+          clearProps: "opacity,transform",
+          scrollTrigger: { trigger: stat, start: "top 88%" }
+        });
     });
 
     /* project cards — staggered fade */
     gsap.utils.toArray(".projects__card").forEach(function (card, i) {
-      gsap.from(card, {
-        scrollTrigger: { trigger: card, start: "top 90%" },
-        opacity: 0, y: 35, duration: 0.55, delay: i * 0.06, ease: "power2.out"
-      });
+      gsap.fromTo(card,
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1, y: 0, duration: 0.55, delay: i * 0.06, ease: "power2.out",
+          clearProps: "opacity,transform",
+          scrollTrigger: { trigger: card, start: "top 90%" }
+        });
     });
 
     /* timeline steps — slide from left */
     gsap.utils.toArray(".timeline__step").forEach(function (step, i) {
-      gsap.from(step, {
-        scrollTrigger: { trigger: step, start: "top 88%" },
-        opacity: 0, x: -30, duration: 0.5, delay: Math.min(i * 0.05, 0.3), ease: "power2.out"
-      });
+      gsap.fromTo(step,
+        { opacity: 0, x: -30 },
+        {
+          opacity: 1, x: 0, duration: 0.5, delay: Math.min(i * 0.05, 0.3), ease: "power2.out",
+          clearProps: "opacity,transform",
+          scrollTrigger: { trigger: step, start: "top 88%" }
+        });
     });
 
     /* footer statement — reveal */
